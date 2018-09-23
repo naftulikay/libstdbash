@@ -1,2 +1,5 @@
 /.ansible/galaxy-roles
 /.vagrant
+
+/local
+/vendor
