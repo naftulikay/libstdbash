@@ -1,0 +1,25 @@
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch: {}
+
+jobs:
+  shellcheck:
+    strategy:
+      matrix:
+        os: [ubuntu-20.04, ubuntu-22.04, ubuntu-latest]
+
+    runs-on: "${{ matrix.os }}"
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ludeeus/action-shellcheck@master
+        env:
+          SHELLCHECK_OPTS: ""
+        with:
+          severity: error
+          check_together: yes
+          scandir: './lib'
